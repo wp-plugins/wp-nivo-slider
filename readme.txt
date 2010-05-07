@@ -43,6 +43,7 @@ Implementation of basic functionality
 
 This plugin was developed by Rafael Cirolini - http://www.geniusti.com.br
 The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
+
 == CONTACT ==
 
 Rafael Cirolini
