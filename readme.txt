@@ -1,4 +1,4 @@
-=== Scroll to Top ===
+=== WP Nivo Slider ===
 Contributors: Rafael Cirolini
 Donate link: http://www.geniusdeveloper.com.br/
 Tags: slider, nivo slider, jquery slider, jquery
@@ -23,7 +23,7 @@ Supported features:
 
 * You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory the top-level folder. Don't just upload all the php files and put them in /wp-content/plugins/.
 * Activate the plugin through the 'Plugins' menu in WordPress
-* Visit your Scroll to Top Options (Options - Scroll to Top)
+* Visit your WP Nivo Slider Options (Options - WP Nivo Slider)
 * Configure any options as desired, and then enable the plugin
 * That's it!
 
@@ -41,9 +41,12 @@ Implementation of basic functionality
 == CREDIT ==
 
 This plugin was developed by Rafael Cirolini - http://www.geniusti.com.br
-
+The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
 == CONTACT ==
 
 Rafael Cirolini
 http://www.geniusdeveloper.com.br
 http://www.geniusti.com.br
+
+Gilbert Pellegrom
+http://nivo.dev7studios.com/
