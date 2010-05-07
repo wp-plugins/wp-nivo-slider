@@ -1,0 +1,54 @@
+=== WP Nivo Slider ===
+Contributors: Rafael Cirolini
+Donate link: http://www.geniusdeveloper.com.br/
+Tags: slider, nivo slider, jquery slider, jquery
+Requires at least: 2.9.2
+Tested up to: 2.9.2
+Stable tag: trunk
+
+Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
+
+== Description ==
+
+Fully written in jQuery, the plugin adds a floating box centered in the footer of your site that only appears when you scroll the page down, and when clicked gently roll the site to the top. All this without any modification to your template.
+
+Supported features:
+
+* Smooth scrolling animation, powered by the jQuery
+* Customizable options via the admin panel
+* Works on almost all browsers including IE6
+* No need to add any markup to your theme
+
+== Installation ==
+
+* You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory the top-level folder. Don't just upload all the php files and put them in /wp-content/plugins/.
+* Activate the plugin through the 'Plugins' menu in WordPress
+* Visit your WP Nivo Slider Options (Options - WP Nivo Slider)
+* Insert <?php if ( function_exists('show_nivo_slider') ) { show_nivo_slider(); } ?> into your template file.
+* Add a post thumb to a desired post.
+* That's it!
+
+== Screenshots ==
+
+1. Screenshot 1
+2. Screenshot 2
+3. Screenshot 3
+
+== Changelog ==
+
+= version 1.0 =
+Implementation of basic functionality
+
+== CREDIT ==
+
+This plugin was developed by Rafael Cirolini - http://www.geniusti.com.br
+The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
+
+== CONTACT ==
+
+Rafael Cirolini
+http://www.geniusdeveloper.com.br
+http://www.geniusti.com.br
+
+Gilbert Pellegrom
+http://nivo.dev7studios.com/
