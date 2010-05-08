@@ -24,6 +24,7 @@ To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> W
 2. Screenshot 2
 3. Screenshot 3
 4. Screenshot 4
+5. Screenshot 5
 
 == Installation ==
 
