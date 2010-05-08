@@ -4,7 +4,7 @@ Donate link: http://www.geniusdeveloper.com.br/
 Tags: slider, nivo slider, jquery slider, jquery
 Requires at least: 2.9.2
 Tested up to: 2.9.2
-Stable tag: trunk
+Stable tag: 1.0
 
 Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
