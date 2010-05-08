@@ -26,7 +26,7 @@ Supported features:
 * Visit your WP Nivo Slider Options (Options - WP Nivo Slider)
 * Insert <?php if ( function_exists('show_nivo_slider') ) { show_nivo_slider(); } ?> into your template file.
 * Add a post thumb to a desired post.
-* That's it!
+* That's it!!
 
 == Screenshots ==
 
