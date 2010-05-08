@@ -1,23 +1,29 @@
 === WP Nivo Slider ===
-Contributors: Rafael Cirolini
+Contributors: Rafael Cirolini, Gilbert Pellegrom
 Donate link: http://www.geniusdeveloper.com.br/
-Tags: slider, nivo slider, jquery slider, jquery
+Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
 Tested up to: 2.9.2
 Stable tag: 1.0
 
-Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
+Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
 == Description ==
 
-Fully written in jQuery, the plugin adds a floating box centered in the footer of your site that only appears when you scroll the page down, and when clicked gently roll the site to the top. All this without any modification to your template.
+This plugin creates a Slideshow/Slider with post thumbnails in your posts configured for a particular category of your wordpress. It is entirely written in jQuery (following the pattern of my other plugins).
 
-Supported features:
+It can be integrated anywhere on your Blog/Website. The WP Nivo Slider shows your chosen Blog Posts from a specific Category.
 
-* Smooth scrolling animation, powered by the jQuery
-* Customizable options via the admin panel
-* Works on almost all browsers including IE6
-* No need to add any markup to your theme
+USE 
+
+To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> WP Nivo Slider and choose which category you want that displays the posts. Next you need to insert a post in that category you chose previously. In the post that you entered you need to choose a post thumbnails. WP Nivo Slider changes its size to be the size image that you inserted, or the size of the slider will depend on the Largest image.
+
+== Screenshots ==
+
+1. Screenshot 1
+2. Screenshot 2
+3. Screenshot 3
+4. Screenshot 4
 
 == Installation ==
 
@@ -27,12 +33,6 @@ Supported features:
 * Insert <code>&lt;?php if ( function_exists('show_nivo_slider') )  { show_nivo_slider(); } ?&gt;</code> into your template file.
 * Add a post thumb to a desired post.
 * That's it!!
-
-== Screenshots ==
-
-1. Screenshot 1
-2. Screenshot 2
-3. Screenshot 3
 
 == Changelog ==
 
