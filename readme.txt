@@ -4,7 +4,7 @@ Donate link: http://www.geniusdeveloper.com.br/
 Tags: slider, nivo slider, jquery slider, jquery
 Requires at least: 2.9.2
 Tested up to: 2.9.2
-Stable tag: trunk
+Stable tag: 1.0
 
 Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
@@ -24,7 +24,7 @@ Supported features:
 * You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory the top-level folder. Don't just upload all the php files and put them in /wp-content/plugins/.
 * Activate the plugin through the 'Plugins' menu in WordPress
 * Visit your WP Nivo Slider Options (Options - WP Nivo Slider)
-* Insert <?php if ( function_exists('show_nivo_slider') ) { show_nivo_slider(); } ?> into your template file.
+* Insert <code>&lt;?php if ( function_exists('show_nivo_slider') )  { show_nivo_slider(); } ?&gt;</code> into your template file.
 * Add a post thumb to a desired post.
 * That's it!!
 
