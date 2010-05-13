@@ -14,6 +14,8 @@ This plugin creates a Slideshow/Slider with post thumbnails in your posts config
 
 It can be integrated anywhere on your Blog/Website. The WP Nivo Slider shows your chosen Blog Posts from a specific Category.
 
+View the video: http://www.vimeo.com/11698666
+
 USE 
 
 To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> WP Nivo Slider and choose which category you want that displays the posts. Next you need to insert a post in that category you chose previously. In the post that you entered you need to choose a post thumbnails. WP Nivo Slider changes its size to be the size image that you inserted, or the size of the slider will depend on the Largest image.
