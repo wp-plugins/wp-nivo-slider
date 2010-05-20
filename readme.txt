@@ -4,7 +4,7 @@ Donate link: http://www.geniusdeveloper.com.br/
 Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
 Tested up to: 2.9.2
-Stable tag: 1.1
+Stable tag: 1.2
 
 Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
