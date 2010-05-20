@@ -4,7 +4,7 @@ Donate link: http://www.geniusdeveloper.com.br/
 Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
 Tested up to: 2.9.2
-Stable tag: 1.0
+Stable tag: 1.2
 
 Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
@@ -13,6 +13,8 @@ Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin d
 This plugin creates a Slideshow/Slider with post thumbnails in your posts configured for a particular category of your wordpress. It is entirely written in jQuery (following the pattern of my other plugins).
 
 It can be integrated anywhere on your Blog/Website. The WP Nivo Slider shows your chosen Blog Posts from a specific Category.
+
+View the video: http://www.vimeo.com/11698666
 
 USE 
 
