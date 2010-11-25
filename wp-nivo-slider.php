@@ -3,7 +3,7 @@
 Plugin Name: WP Nivo Slider
 Plugin URI: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
-Version: 1.2
+Version: 1.3
 Author: Rafael Cirolini
 Author URI: http://www.nerdhead.com.br/
 License: GPL2
