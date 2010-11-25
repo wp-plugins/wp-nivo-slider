@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Nivo Slider
-Plugin URI: http://www.geniusdeveloper.com.br/wordpress-en/2010/05/new-plugins-nivo-slider-for-wordpress/?lang=en
+Plugin URI: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 Version: 1.2
 Author: Rafael Cirolini
-Author URI: http://www.geniusdeveloper.com.br
+Author URI: http://www.nerdhead.com.br/
 License: GPL2
 */
 
@@ -65,6 +65,7 @@ position:relative;
 left:0;
 position:absolute;
 top:0;
+display:none;
 }
 .nivoSlider a.nivo-imageLink {
 border:0 none;
