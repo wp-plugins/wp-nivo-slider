@@ -3,8 +3,8 @@ Contributors: Rafael Cirolini, Gilbert Pellegrom
 Donate link: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
 Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
-Tested up to: 3.0
-Stable tag: 1.3
+Tested up to: 3.0.3
+Stable tag: 2.0
 
 Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
@@ -18,7 +18,7 @@ View the video: http://www.vimeo.com/11698666
 
 USE 
 
-To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> WP Nivo Slider and choose which category you want that displays the posts. Next you need to insert a post in that category you chose previously. In the post that you entered you need to choose a post thumbnails. WP Nivo Slider changes its size to be the size image that you inserted, or the size of the slider will depend on the Largest image.
+To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> WP Nivo Slider and choose which category you want that displays the posts. Next you need to insert a post in that category you chose previously. In the post that you entered you need to choose a post thumbnails. WP Nivo Slider changes its size to be the size image that you inserted, or the size of the slider will depend on the Largest image. This plugin do not resize images.
 
 == Screenshots ==
 
@@ -39,6 +39,12 @@ To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> W
 
 == Changelog ==
 
+= version 2.0 =
+New version of nivo js
+Fiz bugs in CSS
+Create width and height fields
+Fix bugs in js
+
 = version 1.3 =
 Fix bug in CSS
 
@@ -47,13 +53,13 @@ Implementation of basic functionality
 
 == CREDIT ==
 
-This plugin was developed by Rafael Cirolini - http://www.geniusti.com.br
+This plugin was developed by Rafael Cirolini - http://www.nerdhead.com.br
 The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
 
 == CONTACT ==
 
 Rafael Cirolini
-http://www.geniusdeveloper.com.br
+http://www.nerdhead.com.br
 http://www.geniusti.com.br
 
 Gilbert Pellegrom

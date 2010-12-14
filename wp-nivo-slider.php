@@ -3,13 +3,13 @@
 Plugin Name: WP Nivo Slider
 Plugin URI: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
-Version: 1.3
+Version: 2.0
 Author: Rafael Cirolini
 Author URI: http://www.nerdhead.com.br/
 License: GPL2
 */
 
-/*  Copyright 2010  WP Nivo Slider - Rafael Cirolini  (email : rafael@geniusti.com.br)
+/*  Copyright 2010  WP Nivo Slider - Rafael Cirolini  (email : rafael@nerdhead.com.br)
  
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -40,6 +40,8 @@ function wpns_reg_function() {
 	register_setting( 'wpns-settings-group', 'wpns_category' );
 	register_setting( 'wpns-settings-group', 'wpns_effect' );
 	register_setting( 'wpns-settings-group', 'wpns_slices' );
+	register_setting( 'wpns-settings-group', 'wpns_width' );
+	register_setting( 'wpns-settings-group', 'wpns_height' );
 }
 
 function wpns_activate() {
@@ -48,113 +50,131 @@ function wpns_activate() {
 	add_option('wpns_slices','5');	
 }
 
-wp_enqueue_script('nivo_slider', WP_PLUGIN_URL . '/wp-nivo-slider/js/jquery.nivo.slider.pack.js', array('jquery'), '1.9' );
+wp_enqueue_script('nivo_slider', WP_PLUGIN_URL . '/wp-nivo-slider/js/jquery.nivo.slider.pack.js', array('jquery'), '2.3' );
 
 function show_nivo_slider() {
 ?>
 
 <style type="text/css">
 #slider {
--moz-box-shadow:0 0 10px #333333;
-background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/loading.gif") no-repeat scroll 50% 50% #202834;
+	-moz-box-shadow:0 0 10px #333333;
+	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/loading.gif") no-repeat scroll 50% 50% #202834;
+	width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
+    height:<?php echo get_option('wpns_height'); ?>px; /* Change this to your images height */
 }
-.nivoSlider {
-position:relative;
-}
-.nivoSlider img {
-left:0;
-position:absolute;
-top:0;
-display:none;
-}
-.nivoSlider a.nivo-imageLink {
-border:0 none;
-display:none;
-height:100%;
-left:0;
-margin:0;
-padding:0;
-position:absolute;
-top:0;
-width:100%;
-z-index:60;
-}
-.nivo-slice {
-display:block;
-height:100%;
-position:absolute;
-z-index:50;
-}
-.nivo-caption {
-background:none repeat scroll 0 0 #000000;
-bottom:0;
-color:#FFFFFF;
-left:0;
-opacity:0.8;
-position:absolute;
-width:100%;
-z-index:89;
-}
-.nivo-caption p {
-margin:0;
-padding:5px;
-}
-.nivo-directionNav a {
-cursor:pointer;
-position:absolute;
-top:45%;
-z-index:99;
-}
-.nivo-prevNav {
-left:0;
-}
-.nivo-nextNav {
-right:0;
+#slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
 }
 #slider a {
-border:0 none;
-display:block;
+	border:0 none;
+	display:block;
+}
+/* The Nivo Slider styles */
+.nivoSlider {
+	position:relative;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:60;
+	display:none;
+}
+/* The slices in the Slider */
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:50;
+	height:100%;
+}
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	background:#000;
+	color:#fff;
+	opacity:0.8; /* Overridden by captionOpacity setting */
+	width:100%;
+	z-index:89;
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:45%;
+	z-index:99;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
 }
 .nivo-controlNav {
-bottom:-30px;	
-left:47%;
-position:absolute;
+	bottom:-30px;	
+	left:47%;
+	position:absolute;
 }
 .nivo-controlNav a {
-background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/bullets.png") no-repeat scroll 0 0 transparent;
-border:0 none;
-display:block;
-float:left;
-height:10px;
-margin-right:3px;
-text-indent:-9999px;
-width:10px;
+	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/bullets.png") no-repeat scroll 0 0 transparent;
+	border:0 none;
+	display:block;
+	float:left;
+	height:10px;
+	margin-right:3px;
+	text-indent:-9999px;
+	width:10px;
 }
 .nivo-controlNav a.active {
-background-position:-10px 0;
+	background-position:-10px 0;
 }
 .nivo-controlNav a {
-cursor:pointer;
-position:relative;
-z-index:99;
+	cursor:pointer;
+	position:relative;
+	z-index:99;
 }
 .nivo-controlNav a.active {
-font-weight:bold;
+	font-weight:bold;
 }
 .nivo-directionNav a {
-background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/arrows.png") no-repeat scroll 0 0 transparent;
-border:0 none;
-display:block;
-height:34px;
-text-indent:-9999px;
-width:32px;
+	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/arrows.png") no-repeat scroll 0 0 transparent;
+	border:0 none;
+	display:block;
+	height:34px;
+	text-indent:-9999px;
+	width:32px;
 }
 a.nivo-nextNav {
-background-position:-32px 0;
-right:10px;
+	background-position:-32px 0;
+	right:10px;
 }
 a.nivo-prevNav {
-left:10px;
+	left:10px;
 }
 </style>
 
@@ -163,36 +183,42 @@ jQuery(window).load(function() {
 	jQuery('#slider').nivoSlider({
 		effect:'<?php echo get_option('wpns_effect'); ?>',
 		slices:<?php echo get_option('wpns_slices'); ?>,
-		animSpeed:500,
-		pauseTime:3000,
-		startSlide:0, //Set starting Slide (0 index)
-		directionNav:true, //Next & Prev
-		directionNavHide:true, //Only show on hover
-		controlNav:true, //1,2,3...
-		controlNavThumbs:false, //Use thumbnails for Control Nav
-		keyboardNav:true, //Use left & right arrows
-		pauseOnHover:true, //Stop animation while hovering
-		manualAdvance:false, //Force manual transitions
-		captionOpacity:0.8, //Universal caption opacity
-		beforeChange: function(){},
-		afterChange: function(){},
-		slideshowEnd: function(){} //Triggers after all slides have been shown
+		animSpeed:500, //Slide transition speed
+        pauseTime:3000,
+        startSlide:0, //Set starting Slide (0 index)
+        directionNav:true, //Next & Prev
+        directionNavHide:true, //Only show on hover
+        controlNav:true, //1,2,3...
+        controlNavThumbs:false, //Use thumbnails for Control Nav
+        controlNavThumbsFromRel:false, //Use image rel for thumbs
+        controlNavThumbsSearch: '.jpg', //Replace this with...
+        controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+        keyboardNav:true, //Use left & right arrows
+        pauseOnHover:true, //Stop animation while hovering
+        manualAdvance:false, //Force manual transitions
+        captionOpacity:0.8, //Universal caption opacity
+        beforeChange: function(){},
+        afterChange: function(){},
+        slideshowEnd: function(){}, //Triggers after all slides have been shown
+        lastSlide: function(){}, //Triggers when last slide is shown
+        afterLoad: function(){} //Triggers when slider has loaded
 	});
 });
 </script>
-
+		
 <div id="slider">
 <?php 
 	$category = get_option('wpns_category');
 	$n_slices = get_option('wpns_slices');
 ?>
 <?php query_posts( 'cat='.$category.'&posts_per_page=$n_slices' ); if( have_posts() ) : while( have_posts() ) : the_post(); ?>
-	<?php if(has_post_thumbnail()) { ?>
+	<?php if(has_post_thumbnail()) : ?>
 	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> 
 		<?php the_post_thumbnail(); ?>
 	</a>
-	<?php } ?>
+	<?php endif ?>
 	<?php endwhile; endif;?>
+	<?php wp_reset_query();?>
 </div>
 
 <?php } 
@@ -254,6 +280,26 @@ function wpns_menu_function() {
         	<option value="fold" <?php if($effect == 'fold') echo 'selected="selected"'; ?> >fold</option>
         	<option value="fade" <?php if($effect == 'fade') echo 'selected="selected"'; ?> >fade</option>
         </select>
+        </label>
+        </tr>
+		
+		<tr valign="top">
+			<td>This is size of yours images. This plugin do not resize images.</td>
+        </tr>
+		
+		<tr valign="top">
+        <th scope="row">Width</th>
+        <td>
+        <label>
+        <input type="text" name="wpns_width" id="wpns_width" size="7" value="<?php echo get_option('wpns_width'); ?>" />px
+        </label>
+        </tr>
+		
+		<tr valign="top">
+        <th scope="row">Height</th>
+        <td>
+        <label>
+        <input type="text" name="wpns_height" id="wpns_height" size="7" value="<?php echo get_option('wpns_height'); ?>" />px
         </label>
         </tr>
     
