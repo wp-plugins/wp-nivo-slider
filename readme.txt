@@ -1,10 +1,10 @@
 === WP Nivo Slider ===
 Contributors: Rafael Cirolini, Gilbert Pellegrom
-Donate link: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
+Donate link: http://cirolini.com.br/wp-nivo-slider-en/
 Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
-Tested up to: 3.0.3
-Stable tag: 2.0
+Tested up to: 3.51
+Stable tag: 3.0
 
 Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
@@ -59,8 +59,7 @@ The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
 == CONTACT ==
 
 Rafael Cirolini
-http://www.nerdhead.com.br
-http://www.geniusti.com.br
+http://www.cirolini.com.br/
 
 Gilbert Pellegrom
-http://nivo.dev7studios.com/
+http://dev7studios.com/nivo-slider/
