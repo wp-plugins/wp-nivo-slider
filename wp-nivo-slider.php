@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Nivo Slider
-Plugin URI: http://www.nerdhead.com.br/en/wp-nivo-slider-en/
+Plugin URI: http://cirolini.com.br/wp-nivo-slider-en/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
-Version: 2.0
+Version: 3.0
 Author: Rafael Cirolini
-Author URI: http://www.nerdhead.com.br/
+Author URI: http://cirolini.com.br/
 License: GPL2
 */
 
@@ -25,202 +25,126 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
+// Adds actions
 add_action('admin_menu', 'wpns_add_menu');
 add_action('admin_init', 'wpns_reg_function' );
+add_action('wp_enqueue_scripts', 'wpns_add_scripts' );
 
+//register of default values in plugin activation
 register_activation_hook( __FILE__, 'wpns_activate' );
 
+//add post tumbnails
 add_theme_support('post-thumbnails');
 
+//create the menu panel
 function wpns_add_menu() {
     $page = add_options_page('WP Nivo Slider', 'WP Nivo Slider', 'administrator', 'wpns_menu', 'wpns_menu_function');
 }
 
+//create group of variables
 function wpns_reg_function() {
 	register_setting( 'wpns-settings-group', 'wpns_category' );
 	register_setting( 'wpns-settings-group', 'wpns_effect' );
 	register_setting( 'wpns-settings-group', 'wpns_slices' );
 	register_setting( 'wpns-settings-group', 'wpns_width' );
 	register_setting( 'wpns-settings-group', 'wpns_height' );
+	register_setting( 'wpns-settings-group', 'wpns_theme' );
 }
 
+//add default value to variables
 function wpns_activate() {
 	add_option('wpns_category','1');
 	add_option('wpns_effect','random');
 	add_option('wpns_slices','5');	
+	add_option('wpns_theme','default');	
 }
 
-wp_enqueue_script('nivo_slider', WP_PLUGIN_URL . '/wp-nivo-slider/js/jquery.nivo.slider.pack.js', array('jquery'), '2.3' );
+/**
+ * Enqueue plugin style-file
+ */
+function wpns_add_scripts() {
+    //Main css file
+    wp_register_style( 'wpns-style', plugins_url('nivo-slider.css', __FILE__));
+    
+    //Theme css file
+    $wpns_theme = get_option('wpns_theme');
+    if ($wpns_theme == "bar") {
+    	wp_register_style( 'wpns-style-theme', plugins_url('/themes/bar/bar.css', __FILE__));
+    }
+    elseif ($wpns_theme == "dark") {
+	    wp_register_style( 'wpns-style-theme', plugins_url('/themes/dark/dark.css', __FILE__));
+    }
+    elseif ($wpns_theme == "light") {
+	    wp_register_style( 'wpns-style-theme', plugins_url('/themes/light/light.css', __FILE__));
+    }
+    else {
+	    wp_register_style( 'wpns-style-theme', plugins_url('/themes/default/default.css', __FILE__));
+    }
+    
+    //enqueue css
+    wp_enqueue_style( 'wpns-style' );
+    wp_enqueue_style( 'wpns-style-theme' );
+    
+    wp_enqueue_script('wpns-js', plugins_url('jquery.nivo.slider.pack.js', __FILE__), array('jquery'), '3.2' );
+}
 
 function show_nivo_slider() {
 ?>
 
-<style type="text/css">
-#slider {
-	-moz-box-shadow:0 0 10px #333333;
-	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/loading.gif") no-repeat scroll 50% 50% #202834;
-	width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
+<?php 
+	$wpns_theme = get_option('wpns_theme'); 
+	$wpns_width = get_option('wpns_width');
+?>
+<style>
+.slider-wrapper {
+    width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
+    height:<?php echo get_option('wpns_height'); ?>px; /* Change this to your images height */	
+}
+#wpns_slider {
+    width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
     height:<?php echo get_option('wpns_height'); ?>px; /* Change this to your images height */
 }
-#slider img {
-	position:absolute;
-	top:0px;
-	left:0px;
-	display:none;
-}
-#slider a {
-	border:0 none;
-	display:block;
-}
-/* The Nivo Slider styles */
 .nivoSlider {
-	position:relative;
+    position:relative;
 }
 .nivoSlider img {
-	position:absolute;
-	top:0px;
-	left:0px;
-}
-/* If an image is wrapped in a link */
-.nivoSlider a.nivo-imageLink {
-	position:absolute;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:100%;
-	border:0;
-	padding:0;
-	margin:0;
-	z-index:60;
-	display:none;
-}
-/* The slices in the Slider */
-.nivo-slice {
-	display:block;
-	position:absolute;
-	z-index:50;
-	height:100%;
-}
-/* Caption styles */
-.nivo-caption {
-	position:absolute;
-	left:0px;
-	bottom:0px;
-	background:#000;
-	color:#fff;
-	opacity:0.8; /* Overridden by captionOpacity setting */
-	width:100%;
-	z-index:89;
-}
-.nivo-caption p {
-	padding:5px;
-	margin:0;
-}
-.nivo-caption a {
-	display:inline !important;
-}
-.nivo-html-caption {
+    position:absolute;
+    top:0px;
+    left:0px;
     display:none;
 }
-/* Direction nav styles (e.g. Next & Prev) */
-.nivo-directionNav a {
-	position:absolute;
-	top:45%;
-	z-index:99;
-	cursor:pointer;
-}
-.nivo-prevNav {
-	left:0px;
-}
-.nivo-nextNav {
-	right:0px;
-}
-.nivo-controlNav {
-	bottom:-30px;	
-	left:47%;
-	position:absolute;
-}
-.nivo-controlNav a {
-	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/bullets.png") no-repeat scroll 0 0 transparent;
-	border:0 none;
-	display:block;
-	float:left;
-	height:10px;
-	margin-right:3px;
-	text-indent:-9999px;
-	width:10px;
-}
-.nivo-controlNav a.active {
-	background-position:-10px 0;
-}
-.nivo-controlNav a {
-	cursor:pointer;
-	position:relative;
-	z-index:99;
-}
-.nivo-controlNav a.active {
-	font-weight:bold;
-}
-.nivo-directionNav a {
-	background:url("<?php echo WP_PLUGIN_URL . "/wp-nivo-slider/"; ?>images/arrows.png") no-repeat scroll 0 0 transparent;
-	border:0 none;
-	display:block;
-	height:34px;
-	text-indent:-9999px;
-	width:32px;
-}
-a.nivo-nextNav {
-	background-position:-32px 0;
-	right:10px;
-}
-a.nivo-prevNav {
-	left:10px;
+.nivoSlider a {
+    border:0;
+    display:block;
 }
 </style>
 
 <script type="text/javascript">
 jQuery(window).load(function() {
-	jQuery('#slider').nivoSlider({
+	jQuery('#wpns_slider').nivoSlider({
 		effect:'<?php echo get_option('wpns_effect'); ?>',
 		slices:<?php echo get_option('wpns_slices'); ?>,
-		animSpeed:500, //Slide transition speed
-        pauseTime:3000,
-        startSlide:0, //Set starting Slide (0 index)
-        directionNav:true, //Next & Prev
-        directionNavHide:true, //Only show on hover
-        controlNav:true, //1,2,3...
-        controlNavThumbs:false, //Use thumbnails for Control Nav
-        controlNavThumbsFromRel:false, //Use image rel for thumbs
-        controlNavThumbsSearch: '.jpg', //Replace this with...
-        controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
-        keyboardNav:true, //Use left & right arrows
-        pauseOnHover:true, //Stop animation while hovering
-        manualAdvance:false, //Force manual transitions
-        captionOpacity:0.8, //Universal caption opacity
-        beforeChange: function(){},
-        afterChange: function(){},
-        slideshowEnd: function(){}, //Triggers after all slides have been shown
-        lastSlide: function(){}, //Triggers when last slide is shown
-        afterLoad: function(){} //Triggers when slider has loaded
 	});
 });
 </script>
-		
-<div id="slider">
-<?php 
-	$category = get_option('wpns_category');
-	$n_slices = get_option('wpns_slices');
-?>
-<?php query_posts( 'cat='.$category.'&posts_per_page=$n_slices' ); if( have_posts() ) : while( have_posts() ) : the_post(); ?>
-	<?php if(has_post_thumbnail()) : ?>
-	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> 
-		<?php the_post_thumbnail(); ?>
-	</a>
-	<?php endif ?>
-	<?php endwhile; endif;?>
-	<?php wp_reset_query();?>
-</div>
 
+<div class="slider-wrapper theme-<?php echo $wpns_theme; ?>">
+	<div id="wpns_slider" class="nivoSlider">
+	<?php 
+		$category = get_option('wpns_category');
+		$n_slices = get_option('wpns_slices');
+	?>
+	<?php query_posts( 'cat='.$category.'&posts_per_page=$n_slices' ); if( have_posts() ) : while( have_posts() ) : the_post(); ?>
+		<?php if(has_post_thumbnail()) : ?>
+			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> 
+				<?php the_post_thumbnail(); ?>
+			</a>
+		<?php endif ?>
+		<?php endwhile; endif;?>
+		<?php wp_reset_query();?>
+	</div>
+</div>
 <?php } 
 
 function wpns_menu_function() {
@@ -228,7 +152,7 @@ function wpns_menu_function() {
 ?>
 
 <div class="wrap">
-<h2>WP Nive Slider</h2>
+<h2>WP Nivo Slider</h2>
  
 <form method="post" action="options.php">
     <?php settings_fields( 'wpns-settings-group' ); ?>
@@ -279,6 +203,20 @@ function wpns_menu_function() {
         	<option value="sliceUpDownLeft" <?php if($effect == 'sliceUpDownLeft') echo 'selected="selected"'; ?> >sliceUpDownLeft</option>
         	<option value="fold" <?php if($effect == 'fold') echo 'selected="selected"'; ?> >fold</option>
         	<option value="fade" <?php if($effect == 'fade') echo 'selected="selected"'; ?> >fade</option>
+        </select>
+        </label>
+        </tr>
+        
+        <tr valign="top">
+        <th scope="row">Theme</th>
+        <td>
+        <label>
+        <?php $wpns_theme = get_option('wpns_theme'); ?>
+        <select name="wpns_theme" id="wpns_theme">
+        	<option value="bar" <?php if($wpns_theme == 'bar') echo 'selected="selected"'; ?>>Bar</option>
+        	<option value="dark" <?php if($wpns_theme == 'dark') echo 'selected="selected"'; ?> >Dark</option>
+        	<option value="default" <?php if($wpns_theme == 'default') echo 'selected="selected"'; ?> >Default</option>
+        	<option value="light" <?php if($wpns_theme == 'sliceUp') echo 'selected="selected"'; ?> >Light</option>
         </select>
         </label>
         </tr>
