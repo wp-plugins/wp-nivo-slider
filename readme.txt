@@ -57,7 +57,7 @@ Implementation of basic functionality
 
 == CREDIT ==
 
-This plugin was developed by Rafael Cirolini - http://www.nerdhead.com.br
+This plugin was developed by Rafael Cirolini - http://cirolini.com.br/
 The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
 
 == CONTACT ==
