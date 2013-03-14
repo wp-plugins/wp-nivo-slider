@@ -3,23 +3,23 @@
 Plugin Name: WP Nivo Slider
 Plugin URI: http://cirolini.com.br/wp-nivo-slider-en/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
-Version: 3.0
+Version: 3.1
 Author: Rafael Cirolini
 Author URI: http://cirolini.com.br/
 License: GPL2
 */
 
 /*  Copyright 2010  WP Nivo Slider - Rafael Cirolini  (email : rafael@nerdhead.com.br)
- 
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
- 
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
- 
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -56,8 +56,8 @@ function wpns_reg_function() {
 function wpns_activate() {
 	add_option('wpns_category','1');
 	add_option('wpns_effect','random');
-	add_option('wpns_slices','5');	
-	add_option('wpns_theme','default');	
+	add_option('wpns_slices','5');
+	add_option('wpns_theme','default');
 }
 
 /**
@@ -66,7 +66,7 @@ function wpns_activate() {
 function wpns_add_scripts() {
     //Main css file
     wp_register_style( 'wpns-style', plugins_url('nivo-slider.css', __FILE__));
-    
+
     //Theme css file
     $wpns_theme = get_option('wpns_theme');
     if ($wpns_theme == "bar") {
@@ -81,25 +81,25 @@ function wpns_add_scripts() {
     else {
 	    wp_register_style( 'wpns-style-theme', plugins_url('/themes/default/default.css', __FILE__));
     }
-    
+
     //enqueue css
     wp_enqueue_style( 'wpns-style' );
     wp_enqueue_style( 'wpns-style-theme' );
-    
+
     wp_enqueue_script('wpns-js', plugins_url('jquery.nivo.slider.pack.js', __FILE__), array('jquery'), '3.2' );
 }
 
 function show_nivo_slider() {
 ?>
 
-<?php 
-	$wpns_theme = get_option('wpns_theme'); 
+<?php
+	$wpns_theme = get_option('wpns_theme');
 	$wpns_width = get_option('wpns_width');
 ?>
 <style>
 .slider-wrapper {
     width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
-    height:<?php echo get_option('wpns_height'); ?>px; /* Change this to your images height */	
+    height:<?php echo get_option('wpns_height'); ?>px; /* Change this to your images height */
 }
 #wpns_slider {
     width:<?php echo get_option('wpns_width'); ?>px; /* Change this to your images width */
@@ -131,21 +131,21 @@ jQuery(window).load(function() {
 
 <div class="slider-wrapper theme-<?php echo $wpns_theme; ?>">
 	<div id="wpns_slider" class="nivoSlider">
-	<?php 
+	<?php
 		$category = get_option('wpns_category');
 		$n_slices = get_option('wpns_slices');
 	?>
 	<?php query_posts( 'cat='.$category.'&posts_per_page=$n_slices' ); if( have_posts() ) : while( have_posts() ) : the_post(); ?>
-		<?php if(has_post_thumbnail()) : ?>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> 
+		<?php if ( '' != get_the_post_thumbnail() ) : ?>
+			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 				<?php the_post_thumbnail(); ?>
 			</a>
 		<?php endif ?>
-		<?php endwhile; endif;?>
-		<?php wp_reset_query();?>
+	<?php endwhile; endif;?>
+	<?php wp_reset_query();?>
 	</div>
 </div>
-<?php } 
+<?php }
 
 function wpns_menu_function() {
 
@@ -153,19 +153,19 @@ function wpns_menu_function() {
 
 <div class="wrap">
 <h2>WP Nivo Slider</h2>
- 
+
 <form method="post" action="options.php">
     <?php settings_fields( 'wpns-settings-group' ); ?>
     <table class="form-table">
-      
+
         <tr valign="top">
         <th scope="row">Category</th>
         <td>
-        <select name="wpns_category" id="wpns_category"> 
-			 <option value="">Select a Category</option> 
- 			<?php 
+        <select name="wpns_category" id="wpns_category">
+			 <option value="">Select a Category</option>
+ 			<?php
  				$category = get_option('wpns_category');
-  				$categories=  get_categories(); 
+  				$categories=  get_categories();
   				foreach ($categories as $cat) {
   					$option = '<option value="'.$cat->term_id.'"';
   					if ($category == $cat->term_id) $option .= ' selected="selected">';
@@ -179,7 +179,7 @@ function wpns_menu_function() {
 		</select>
 
         </tr>
-    	
+
     	<tr valign="top">
         <th scope="row">Number of slices</th>
         <td>
@@ -187,7 +187,7 @@ function wpns_menu_function() {
         <input type="text" name="wpns_slices" id="wpns_slices" size="7" value="<?php echo get_option('wpns_slices'); ?>" />
         </label>
         </tr>
-        
+
         <tr valign="top">
         <th scope="row">Type of Animation</th>
         <td>
@@ -203,10 +203,18 @@ function wpns_menu_function() {
         	<option value="sliceUpDownLeft" <?php if($effect == 'sliceUpDownLeft') echo 'selected="selected"'; ?> >sliceUpDownLeft</option>
         	<option value="fold" <?php if($effect == 'fold') echo 'selected="selected"'; ?> >fold</option>
         	<option value="fade" <?php if($effect == 'fade') echo 'selected="selected"'; ?> >fade</option>
+        	<option value="slideInRight" <?php if($effect == 'slideInRight') echo 'selected="selected"'; ?> >slideInRight</option>
+        	<option value="slideInLeft" <?php if($effect == 'slideInLeft') echo 'selected="selected"'; ?> >slideInLeft</option>
+        	<option value="boxRandom" <?php if($effect == 'boxRandom') echo 'selected="selected"'; ?> >boxRandom</option>
+        	<option value="boxRain" <?php if($effect == 'boxRain') echo 'selected="selected"'; ?> >boxRain</option>
+        	<option value="boxRainReverse" <?php if($effect == 'boxRainReverse') echo 'selected="selected"'; ?> >boxRainReverse</option>
+        	<option value="boxRainGrow" <?php if($effect == 'boxRainGrow') echo 'selected="selected"'; ?> >boxRainGrow</option>
+        	<option value="boxRainGrowReverse" <?php if($effect == 'boxRainGrowReverse') echo 'selected="selected"'; ?> >boxRainGrowReverse</option>
+        	
         </select>
         </label>
         </tr>
-        
+
         <tr valign="top">
         <th scope="row">Theme</th>
         <td>
@@ -220,11 +228,11 @@ function wpns_menu_function() {
         </select>
         </label>
         </tr>
-		
+
 		<tr valign="top">
 			<td>This is size of yours images. This plugin do not resize images.</td>
         </tr>
-		
+
 		<tr valign="top">
         <th scope="row">Width</th>
         <td>
@@ -232,7 +240,7 @@ function wpns_menu_function() {
         <input type="text" name="wpns_width" id="wpns_width" size="7" value="<?php echo get_option('wpns_width'); ?>" />px
         </label>
         </tr>
-		
+
 		<tr valign="top">
         <th scope="row">Height</th>
         <td>
@@ -240,13 +248,13 @@ function wpns_menu_function() {
         <input type="text" name="wpns_height" id="wpns_height" size="7" value="<?php echo get_option('wpns_height'); ?>" />px
         </label>
         </tr>
-    
+
     </table>
- 
+
     <p class="submit">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
- 
+
 </form>
 </div>
 
