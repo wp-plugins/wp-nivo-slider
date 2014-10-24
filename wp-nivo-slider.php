@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Nivo Slider
-Plugin URI: http://cirolini.com.br/wp-nivo-slider-en/
+Plugin URI: http://www.soumae.org/wp-nivo-slider/
 Description: Creates a slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 Version: 3.1
 Author: Rafael Cirolini
-Author URI: http://cirolini.com.br/
+Author URI: http://www.soumae.org/
 License: GPL2
 */
 
