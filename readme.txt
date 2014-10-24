@@ -1,10 +1,10 @@
 === WP Nivo Slider ===
 Contributors: Rafael Cirolini, Gilbert Pellegrom
-Donate link: http://cirolini.com.br/wp-nivo-slider-en/
+Donate link: http://www.soumae.org/wp-nivo-slider/
 Tags: slider, nivo slider, jquery slider, jquery, image, image slider
 Requires at least: 2.9.2
-Tested up to: 3.5.1
-Stable tag: 3.1
+Tested up to: 4.0
+Stable tag: 3.2
 
 Creates a image slider using js created by Gilbert Pellegrom. WordPress plugin develop by Rafael Cirolini
 
@@ -38,6 +38,10 @@ To use the WP Nivo Slider, you must first enter the settings Plug-in Option -> W
 * That's it!!
 
 == Changelog ==
+
+= version 3.2 =
+Bug corretion on Slider shows only last post, thanks sr_blasco
+
 = version 3.1 =
 Bug correction on have_post_thumbnails
 Add more efects
@@ -61,13 +65,13 @@ Implementation of basic functionality
 
 == CREDIT ==
 
-This plugin was developed by Rafael Cirolini - http://cirolini.com.br/
+This plugin was developed by Rafael Cirolini - http://www.soumae.org/sobre-2/
 The Slider was developed by Gilbert Pellegrom - http://nivo.dev7studios.com/
 
 == CONTACT ==
 
 Rafael Cirolini
-http://www.cirolini.com.br/
+http://www.soumae.org/
 
 Gilbert Pellegrom
 http://dev7studios.com/nivo-slider/
